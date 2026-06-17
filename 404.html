@@ -7,16 +7,29 @@
   <title>Página no encontrada (404) | Clínica Dental Elgorriaga</title>
   <meta name="description" content="La página que buscas no existe. Vuelve al inicio de la Clínica Dental Elgorriaga en Irún." />
   <meta name="robots" content="noindex, follow" />
-  <link rel="icon" href="/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/svg+xml" href="/assets/img/marca/favicon.svg" />
-  <link rel="apple-touch-icon" href="/assets/img/marca/apple-touch-icon.png" />
-  <link rel="preload" href="/assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/assets/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/assets/css/base.css" />
-  <link rel="stylesheet" href="/assets/css/components.css" />
-  <link rel="stylesheet" href="/assets/css/pages.css" />
+  <!-- Detecta la raíz del sitio (funciona en dominio propio y en subpath de GitHub Pages)
+       y la fija como base para que CSS, enlaces y redirección resuelvan bien desde cualquier ruta. -->
+  <script>
+    (function () {
+      var base = "/";
+      if (location.hostname.endsWith("github.io")) {
+        var seg = location.pathname.split("/").filter(Boolean)[0];
+        if (seg) base = "/" + seg + "/";
+      }
+      document.write('<base href="' + base + '">');
+      window.__siteBase = base;
+    })();
+  </script>
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/marca/favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/img/marca/apple-touch-icon.png" />
+  <link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/components.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
   <!-- Fallback de redirección si JS está desactivado (8s para poder leer/usar enlaces) -->
-  <noscript><meta http-equiv="refresh" content="8; url=/" /></noscript>
+  <noscript><meta http-equiv="refresh" content="8; url=index.html" /></noscript>
 </head>
 <body>
   <main class="notfound">
@@ -32,7 +45,7 @@
       <h1>404</h1>
       <p>Vaya… esta página se nos ha caído como un diente de leche. No la encontramos.</p>
       <div class="hero__actions" style="justify-content:center">
-        <a class="btn btn--on-dark btn--lg" href="/">Volver al inicio</a>
+        <a class="btn btn--on-dark btn--lg" href="index.html">Volver al inicio</a>
         <a class="btn btn--lg" style="--btn-bg:var(--aqua);--btn-fg:var(--brand-ink)" href="tel:+34943638545">Llamar · 943 638 545</a>
       </div>
       <p class="notfound__redirect">Te llevaremos al inicio en <span id="count">8</span> segundos…</p>
@@ -55,7 +68,7 @@
       var t = setInterval(function () {
         n -= 1;
         if (el) el.textContent = n;
-        if (n <= 0) { clearInterval(t); window.location.replace("/"); }
+        if (n <= 0) { clearInterval(t); window.location.replace((window.__siteBase || "/") + "index.html"); }
       }, 1000);
     })();
   </script>
