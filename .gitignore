@@ -1,0 +1,15 @@
+# Temporales de trabajo / capturas
+_shot*.png
+_z_*.png
+_f_*.png
+_shot.py
+*.tmp
+
+# Material de trabajo interno (no forma parte de la web pública)
+contenido-web/
+scraper.py
+PRODUCT.md
+DESIGN.md
+CREATIVE-PLAN.md
+.impeccable/
+legal/

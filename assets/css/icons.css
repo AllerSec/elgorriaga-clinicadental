@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Iconos SVG animados — bucles sutiles (sustituyen a emojis)
+   Todos se detienen con prefers-reduced-motion.
+   ========================================================================== */
+
+/* Latido del corazón (feature "trato cercano") */
+.feature__icon .heart {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: beat 2.4s var(--ease-out) infinite;
+}
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.12); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.08); }
+  60% { transform: scale(1); }
+}
+.feature__icon .pulse-line {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 44;
+  animation: ecg 2.4s linear infinite;
+}
+@keyframes ecg {
+  0% { stroke-dashoffset: 44; }
+  60%, 100% { stroke-dashoffset: 0; }
+}
+
+/* Punto de tecnología (escáner) */
+.feature__icon .tech-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: tech-pulse 2s ease-in-out infinite;
+}
+@keyframes tech-pulse {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Manecilla del reloj (experiencia) */
+.feature__icon .clock-hand {
+  transform-box: fill-box;
+  transform-origin: 16px 16px;
+  animation: tick 6s steps(12) infinite;
+}
+@keyframes tick {
+  to { transform: rotate(360deg); }
+}
+
+/* Iconos de tratamiento: leve flotación al hacer hover en la tarjeta */
+.treatment:hover .treatment__icon svg {
+  animation: float-icon 1.4s var(--ease-out) infinite alternate;
+}
+@keyframes float-icon {
+  to { transform: translateY(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature__icon .heart,
+  .feature__icon .pulse-line,
+  .feature__icon .tech-dot,
+  .feature__icon .clock-hand,
+  .treatment:hover .treatment__icon svg {
+    animation: none !important;
+  }
+}
